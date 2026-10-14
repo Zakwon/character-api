@@ -1,9 +1,10 @@
 package com.example.character_api.repository;
 
 import com.example.character_api.model.XmenCharacter;
-import org.springframework.data.jpa.repository.XmenCharacterRepository;
-import org.springframework.stereotype.Repository;
+import com.example.character_api.repository.XmenCharacterRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org,springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -18,4 +19,10 @@ public class XmenCharacterService {
 
     public List<XmenCharacter> getAllCharacters() {
         return xmenCharacterRepository.findAll();
+    }
+
+    public XmenCharacter getCharacterById(long id) {
+        return xmenCharacterRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Character not found"));
     }
