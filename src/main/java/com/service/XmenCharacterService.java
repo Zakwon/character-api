@@ -26,3 +26,26 @@ public class XmenCharacterService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Character not found"));
     }
+    
+    public XmenCharacter addCharacter(XmenCharacter character) {
+        return xmenCharacterRepository.save(character);
+    }
+
+    public XmenCharacter updateCharacter(long id, XmenCharacter updatedCharacter) {
+        XmenCharacter existingCharacter = xmenCharacterRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Character not found"));
+
+        existingCharacter.setName(updatedCharacter.getName());
+        existingCharacter.setDescription(updatedCharacter.getDescription());
+        existingCharacter.setAlias(updatedCharacter.getAlias());
+        existingCharacter.setPowers(updatedCharacter.getPowers());
+
+        return xmenCharacterRepository.save(existingCharacter);
+    }
+
+    public void deleteCharacter(long id) {
+        XmenCharacter existingCharacter = getCharacterById(id);
+        xmenCharacterRepository.delete(existingCharacter);
+    }
+
