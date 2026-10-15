@@ -19,7 +19,7 @@ import com.example.character_api.service.XmenCharacterService;
 import jakarta.validation.Valid;
 
 @RestController 
-@RequestMapping("/api/xmen-characters")
+@RequestMapping("/api/characters")
 public class XmenCharacterController {
 
     private final XmenCharacterService xmenCharacterService;
