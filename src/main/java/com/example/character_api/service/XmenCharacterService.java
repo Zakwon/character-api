@@ -1,14 +1,14 @@
-package com.example.character_api.repository;
+package com.example.character_api.service;
 
 import com.example.character_api.model.XmenCharacter;
 import com.example.character_api.repository.XmenCharacterRepository;
-import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
-import org,springframework.web.server.ResponseStatusException;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Service 
+@Service
 public class XmenCharacterService {
 
     private final XmenCharacterRepository xmenCharacterRepository;
@@ -26,7 +26,7 @@ public class XmenCharacterService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Character not found"));
     }
-    
+
     public XmenCharacter addCharacter(XmenCharacter character) {
         return xmenCharacterRepository.save(character);
     }
@@ -48,4 +48,5 @@ public class XmenCharacterService {
         XmenCharacter existingCharacter = getCharacterById(id);
         xmenCharacterRepository.delete(existingCharacter);
     }
+}
 
