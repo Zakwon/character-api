@@ -1,5 +1,6 @@
 package com.example.character_api.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,23 +22,60 @@ public class XmenCharacter {
     @NotBlank(message = "description is required")
     private String description;
 
+    @Column(length = 1000)
+    private String imageUrls;
+
+    public String getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     private String alias;
     private String powers;
 
-    public XmenCharacter() {}
+    public XmenCharacter() {
+    }
 
-    public long getCharacterId() { return characterId; }
-    public void setCharacterId(long characterId) { this.characterId = characterId; }
+    public long getCharacterId() {
+        return characterId;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setCharacterId(long characterId) {
+        this.characterId = characterId;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getName() {
+        return name;
+    }
 
-    public String getAlias() { return alias; }
-    public void setAlias(String alias) { this.alias = alias; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getPowers() { return powers; }
-    public void setPowers(String powers) { this.powers = powers; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getPowers() {
+        return powers;
+    }
+
+    public void setPowers(String powers) {
+        this.powers = powers;
+    }
 }

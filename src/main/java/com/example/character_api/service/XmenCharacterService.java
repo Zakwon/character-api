@@ -40,6 +40,7 @@ public class XmenCharacterService {
         existingCharacter.setDescription(updatedCharacter.getDescription());
         existingCharacter.setAlias(updatedCharacter.getAlias());
         existingCharacter.setPowers(updatedCharacter.getPowers());
+        existingCharacter.setImageUrls(updatedCharacter.getImageUrls());
 
         return xmenCharacterRepository.save(existingCharacter);
     }
