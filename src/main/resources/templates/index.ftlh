@@ -124,12 +124,17 @@
 </head>
 
 <body>
+    <#if message??>
+        <p style="max-width:1000px;margin:0 auto 15px;padding:10px;background:#d4edda;border-radius:6px;">
+            ${message}
+        </p>
+    </#if>
 
     <nav class="navbar">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="details.html">Details</a>
-        <a href="new-character-form.html">Add a Character</a>
+        <a href="character-form.html">Add a Character</a>
     </nav>
 
     <h1>THE X-MEN</h1>

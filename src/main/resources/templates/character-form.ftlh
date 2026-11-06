@@ -45,31 +45,29 @@
         <a href="about.html">About</a>
         <a href="new-character-form.html">Add a Character</a>
     </nav>
-    <h1>New Character Form</h1>
-    <form id="characterForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <h1>${pageTitle}</h1>
+    <#if error??>
+        <p class="error" style="color: red;">${error}</p>
+    </#if>
 
-        <label for="universe">Universe:</label>
-        <input type="text" id="universe" name="universe" required><br><br>
-
-        <label for="role">Role:</label>
-        <input type="text" id="role" name="role" required><br><br>
-
-        <label for="powerLevel">Power Level:</label>
-        <input type="text" id="powerLevel" name="powerLevel" required><br><br>
-
-        <label for="species">Species:</label>
-        <input type="text" id="species" name="species" required><br><br>
-
-        <label for="imageUrl">Image URL:</label>
-        <input type="text" id="imageUrl" name="imageUrl" required><br><br>
-
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="40" required></textarea><br><br>
-
-
-        <button type="submit">Submit</button>
+    <form method="post" action="${formAction}">
+        <label>Name
+            <input type="text" name="name" value="${(character.name)!''}" required>
+        </label>
+        <label>Alias
+            <input type="text" name="alias" value="${(character.alias)!''}">
+        </label>
+        <label>Powers
+            <input type="text" name="powers" value="${(character.powers)!''}">
+        </label>
+        <label>Description
+            <textarea name="description" required>${(character.description)!''}</textarea>
+        </label>
+        <label>Image paths (4, separated by commas)
+            <input type="text" name="imageUrls" value="${(character.imageUrls)!''}"
+                placeholder="/images/storm1.png,/images/storm2.png,/images/storm3.png,/images/storm4.png">
+        </label>
+        <button type="submit">Save</button>
     </form>
 </body>
 
