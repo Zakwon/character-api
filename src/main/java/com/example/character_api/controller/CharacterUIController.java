@@ -4,13 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.character_api.model.XmenCharacter;
 import com.example.character_api.service.XmenCharacterService;
 
-@ Controller 
-    public class CharacterUIController {
+@Controller 
+public class CharacterUIController {
 
         private final XmenCharacterService xmenCharacterService;
 
@@ -19,10 +19,15 @@ import com.example.character_api.service.XmenCharacterService;
         }
 
         @GetMapping("/")
-        public String gallery(Model model) {
-            model.addAttribute("characters", xmenCharacterService.getAllCharacters());
+        public String gallery(
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "") String alias, Model model) {
+            model.addAttribute("characters", xmenCharacterService.searchCharacters(name, alias));
+            model.addAttribute("name", name);
+            model.addAttribute("alias", alias);
             return "index";
         }
+
 
         @GetMapping("/about")
         public String about() {

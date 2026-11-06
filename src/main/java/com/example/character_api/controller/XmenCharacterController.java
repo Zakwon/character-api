@@ -3,7 +3,6 @@ package com.example.character_api.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.character_api.model.XmenCharacter;
 import com.example.character_api.service.XmenCharacterService;
@@ -40,14 +38,6 @@ public class XmenCharacterController {
         return xmenCharacterService.getCharacterById(id);
     }
 
-    @GetMapping("/") 
-    public String gallery(@RequestParam(required = false) String name, @RequestParam(required = false) String alias, Model model) 
-    {
-        model.addAttribute("characters", xmenCharacterService.searchCharacters(name, alias));
-        model.addAttribute("name", name);
-        model.addAttribute("alias", alias);
-        return "index";
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

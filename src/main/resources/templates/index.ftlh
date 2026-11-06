@@ -27,10 +27,12 @@
         .search-bar {
             max-width: 1000px;
             margin: 0 auto 20px auto;
+            display: flex;
+            gap: 10px;
         }
 
         .search-bar input {
-            width: 100%;
+            flex: 1;
             padding: 10px 15px;
             font-size: 1rem;
             border: 1px solid #ccc;
