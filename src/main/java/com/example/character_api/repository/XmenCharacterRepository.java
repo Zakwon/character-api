@@ -11,4 +11,8 @@ public interface XmenCharacterRepository extends JpaRepository<XmenCharacter, Lo
     List<XmenCharacter> findByAliasIgnoreCase(String alias);
 
     List<XmenCharacter> findByNameContainingIgnoreCase(String name);
+
+    List<XmenCharacter> findByAliasContainingIgnoreCase(String alias);
+
+    List<XmenCharacter> findByNameContainingIgnoreCaseAndAliasContainingIgnoreCase(String name, String alias);
 }

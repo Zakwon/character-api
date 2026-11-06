@@ -9,25 +9,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.character_api.model.XmenCharacter;
 import com.example.character_api.service.XmenCharacterService;
 
-@Controller
-@RequestMapping("/characters")
-public class CharacterUIController {
+@ Controller 
+    public class CharacterUIController {
 
-    private final XmenCharacterService xmenCharacterService;
+        private final XmenCharacterService xmenCharacterService;
 
-    public CharacterUIController(XmenCharacterService xmenCharacterService) {
-        this.xmenCharacterService = xmenCharacterService;
+        public CharacterUIController(XmenCharacterService xmenCharacterService) {
+            this.xmenCharacterService = xmenCharacterService;
+        }
+
+        @GetMapping("/")
+        public String gallery(Model model) {
+            model.addAttribute("characters", xmenCharacterService.getAllCharacters());
+            return "index";
+        }
+
+        @GetMapping("/about")
+        public String about() {
+            return "about";
+        }
+
+        @GetMapping("/characters/{id}")
+        public String details(@PathVariable long id, Model model) {
+            XmenCharacter character = xmenCharacterService.getCharacterById(id);
+            model.addAttribute("character", character);
+            return "details";
+        }
     }
-    
-    @GetMapping("/about")
-    public String about(){
-        return "about";
-    }
 
-    @GetMapping ("/{id}")   
-    public String details (@PathVariable long id, Model model) {
-        XmenCharacter character = xmenCharacterService.getCharacterById(id);
-        model.addAttribute("character", character);
-        return "details";
-    } 
-}
+

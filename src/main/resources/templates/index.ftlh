@@ -133,83 +133,30 @@
     <h1>THE X-MEN</h1>
 
     <div class="search-bar">
-        <input type="text" placeholder="Search by name or category...">
+        <form class="search-bar" method="get" action="/">
+            <input type="text" name="name" placeholder="Search by name..." value="${name!''}">
+            <input type="text" name="alias" placeholder="Filter by alias..." value="${alias!''}">
+            <button type="submit">Search</button>
+            <a href="/">Clear</a>
+        </form>
     </div>
 
     <div class="card-container">
-        <div class="card">
-            <img src="https://tse2.mm.bing.net/th/id/OIP.ahikl4f7RTpibM0Uf9bkewHaLc?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                alt="Card Image">
-            <div class="card-content">
-                <h3>Wolverine</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Member</p>
-                <p>Power level: Beta</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
+        <#list characters as c>
+            <div class="card">
+                <#assign first=(((c.imageUrls)!'')?split(',')?filter(x ->
+                    x?trim?has_content)?first)!'/images/placeholder.svg'>
+                    <img src="${first?trim}" alt="${c.name}">
+                    <div class="card-content">
+                        <h3>${c.name}</h3>
+                        <p>Alias: ${c.alias!''}</p>
+                        <p>Powers: ${c.powers!''}</p>
+                        <a href="/characters/${c.characterId?c}">Read More</a>
+                    </div>
             </div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/56/ac/5d/56ac5dcb0806f9d1bbe60708aaa4d80b.jpg" alt="Card Image">
-            <div class="card-content">
-                <h3>Nightcrawler</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Member</p>
-                <p>Power level: Gamma</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.pinimg.com/736x/2a/db/c2/2adbc2c89c97f8e17dc76e0b4a39bc3f.jpg" alt="Card Image">
-            <div class="card-content">
-                <h3>Storm</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Member</p>
-                <p>Power level: Omega</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/20/27/be/2027be22b0a3775ac706b2dcf005c87f.jpg" alt="Card Image">
-            <div class="card-content">
-                <h3>Cyclops</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Leader</p>
-                <p>Power level: Alpha</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://th.bing.com/th/id/R.a9f20d5e37c09958d0460ceb7301ec0c?rik=oUE782ik21ViDQ&pid=ImgRaw&r=0"
-                alt="Card Image">
-            <div class="card-content">
-                <h3>Iceman</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Member</p>
-                <p>Power level: Omega</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/7d/4d/8a/7d4d8a9f1d389ccdbdcc5b9f1984f944.jpg" alt="Card Image">
-            <div class="card-content">
-                <h3>Jean Grey</h3>
-                <p>Universe: Marvel</p>
-                <p>Role: X-Men Member</p>
-                <p>Power level: Omega</p>
-                <p>Species: Mutant</p>
-                <a href="details.html">Read More</a>
-            </div>
-        </div>
+            <#else>
+                <p>No characters found.</p>
+        </#list>
     </div>
 
 </body>
