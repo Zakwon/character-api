@@ -39,11 +39,18 @@ public class CharacterUIController {
         return "about";
     }
 
-    @GetMapping("/characters/{id}")
+    @GetMapping("/characters/{id:\\d+}")
     public String details(@PathVariable long id, Model model) {
-        XmenCharacter character = xmenCharacterService.getCharacterById(id);
-        model.addAttribute("character", character);
-        return "details";
+        try {
+            XmenCharacter character = xmenCharacterService.getCharacterById(id);
+            if (character == null) {
+                return "error";
+            }
+            model.addAttribute("character", character);
+            return "details";
+        } catch (RuntimeException e) {
+            return "error";
+        }
     }
 
     @GetMapping("/characters/new")
@@ -57,15 +64,62 @@ public class CharacterUIController {
     @PostMapping("/characters")
     public String create(@Valid @ModelAttribute("character") XmenCharacter character, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            model.addAttribute("formAction", "/characters/new");
+            model.addAttribute("formAction", "/characters");
             model.addAttribute("pageTitle", "Add a Character");
-            model.addAttribute("errorMessage", "Name and description are required.");
+            model.addAttribute("error", "Name and description are required.");
             return "character-form";
         }
-
         XmenCharacter saved = xmenCharacterService.addCharacter(character);
-        redirectAttributes.addFlashAttribute("Message", saved.getName() + " has been added");
+        redirectAttributes.addFlashAttribute("message", saved.getName() + " was added.");
         return "redirect:/";
+    }
 
+    @GetMapping("/characters/{id:\\d+}/edit")
+    public String editForm(@PathVariable long id, Model model) {
+        try {
+            XmenCharacter character = xmenCharacterService.getCharacterById(id);
+            if (character == null) {
+                return "error";
+            }
+            model.addAttribute("character", character);
+            model.addAttribute("formAction", "/characters/" + id);
+            model.addAttribute("pageTitle", "Edit " + character.getName());
+            return "character-form";
+        } catch (RuntimeException e) {
+            return "error";
+        }
+    }
+
+    @PostMapping("/characters/{id:\\d+}")
+    public String update(@PathVariable long id, @Valid @ModelAttribute("character") XmenCharacter character, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            model.addAttribute("formAction", "/characters/" + id);
+            model.addAttribute("pageTitle", "Edit Character");
+            model.addAttribute("error", "Name and description are required.");
+            return "character-form";
+        }
+        try {
+            XmenCharacter updated = xmenCharacterService.updateCharacter(id, character);
+            redirectAttributes.addFlashAttribute("message", updated.getName() + " was updated.");
+            return "redirect:/characters/" + id;
+        } catch (RuntimeException e) {
+            return "error";
+        }
+    }
+
+    @PostMapping("/characters/{id:\\d+}/delete")
+    public String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        try {
+            XmenCharacter character = xmenCharacterService.getCharacterById(id);
+            if (character == null) {
+                return "error";
+            }
+            String name = character.getName();
+            xmenCharacterService.deleteCharacter(id);
+            redirectAttributes.addFlashAttribute("message", name + " was removed.");
+            return "redirect:/";
+        } catch (RuntimeException e) {
+            return "error";
+        }
     }
 }

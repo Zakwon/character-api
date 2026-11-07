@@ -40,10 +40,9 @@
 
 <body>
     <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="details.html">Details</a>
-        <a href="about.html">About</a>
-        <a href="new-character-form.html">Add a Character</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/characters/new">Add a Character</a>
     </nav>
     <h1>${pageTitle}</h1>
     <#if error??>

@@ -62,10 +62,9 @@
 
 <body>
     <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="details.html">Details</a>
-        <a href="about.html">About</a>
-        <a href="new-character-form.html">Add a Character</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <!-- <a href="/characters/new">Add a Character</a> -->
     </nav>
     <img src="https://wallpapers.com/images/hd/marvel-comics-2560x1440-wallpaper-43wij9bee89d4lit.jpg" alt="X-Men Logo"
         class="logo-banner">
