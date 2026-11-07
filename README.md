@@ -1,44 +1,47 @@
-# X-Men Character API
+# 【entity-X-Men¦canonical_name=X-Men】 Character API
 
-A RESTful CRUD API for X-Men characters, built with Spring Boot, Spring Data JPA, and PostgreSQL (Neon). It uses the same characters as my Assignment 2 website. Deployed on Render with Docker.
+A Spring Boot app for browsing, searching, adding, editing, and deleting 【entity-X-Men¦canonical_name=X-Men】 characters.
 
-## Live API
+There are two front ends sharing one back end:
+- **FreeMarker pages** for humans — gallery, details, add / edit forms, about, and a friendly error page
+- **REST API** that returns the same data as JSON
 
-https://xmen-character-api.onrender.com/api/characters
+**Live app:** https://xmen-character-api.onrender.com/
+**Live API:** https://xmen-character-api.onrender.com/api/characters
 
-**Note:** This runs on Render's free tier, which sleeps when idle. The first request can take up to a minute to respond.
+> Note: This is on Render's free tier, so the first visit can take about 1 minute to wake up. Just wait and refresh once if it looks like it is loading.
 
-## Entity: XmenCharacter
+## Pages (FreeMarker UI)
 
-| Attribute | Type | Rules |
-|---|---|---|
-| characterId | long | Unique, auto-generated |
-| name | String | Required (not null, not blank) |
-| description | String | Required (not null, not blank) |
-| alias | String | Optional |
-| powers | String | Optional |
+| Page | URL | What it does |
+| --- | --- | --- |
+| Gallery | `/` | Shows all characters as cards. Search by name, filter by alias. Click a card for details. |
+| Details | `/characters/{id}` | Shows name, alias, powers, description, and all images. Has Edit and Delete. |
+| Add a Character | `/characters/new` | Form to add a new character. Name and description are required. |
+| Edit Character | `/characters/{id}/edit` | Same form as Add, but pre-filled with the existing character. |
+| About | `/about` | Why I chose X-Men, plus how the app is built. |
+| Not Found | `/characters/99999` | Friendly error page instead of a stack trace when an ID does not exist. |
 
-## Endpoints
+After a successful add, edit, or delete, the app uses Post / Redirect / Get and shows a one-time flash message, for example:
+- `Storm was added.`
+- `Storm was updated.`
+- `Storm was removed.`
 
-| Method | Path | Description | Success Status |
-|---|---|---|---|
-| GET | /api/characters | Get all characters | 200 |
-| GET | /api/characters/{id} | Get one character by ID | 200 |
-| POST | /api/characters | Add a character | 201 |
-| PUT | /api/characters/{id} | Update a character | 200 |
-| DELETE | /api/characters/{id} | Delete a character | 204 |
-| GET | /api/characters?alias=scott | Filter by alias (case-insensitive) | 200 |
-| GET | /api/characters?name=cycl | Search by name (partial, case-insensitive) | 200 |
+Refreshing the page does not submit the form twice.
 
-**Errors:** a non-existent ID returns 404. A POST or PUT with a missing name or description returns 400.
+## REST API
 
-### Example request body (POST and PUT)
+Base URL: `https://xmen-character-api.onrender.com/api/characters`
 
-```json
-{
-  "name": "Bobby Drake",
-  "description": "Mutant with ice powers",
-  "alias": "Iceman",
-  "powers": "Create and manipulate ice"
-}
-```
+| Method | Endpoint | What it does |
+| --- | --- | --- |
+| GET | `/api/characters` | Get all characters |
+| GET | `/api/characters/{id}` | Get one character by ID |
+| GET | `/api/characters/search?name=Storm&alias=` | Search by name and / or alias |
+| POST | `/api/characters` | Add a new character (JSON body) |
+| PUT | `/api/characters/{id}` | Update a character by ID |
+| DELETE | `/api/characters/{id}` | Delete a character by ID |
+
+Example — get all characters:
+```bash
+curl https://xmen-character-api.onrender.com/api/characters
