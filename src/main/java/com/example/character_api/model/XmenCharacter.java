@@ -5,38 +5,39 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "characters")
 public class XmenCharacter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long characterId;
 
-    @NotBlank(message = "name is required")
+    @NotBlank
     private String name;
 
-    @NotBlank(message = "description is required")
+    @NotBlank
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 1000)
-    private String imageUrls;
-
-    public String getImageUrls() {
-        return imageUrls;
-    }
-
-    public void setImageUrls(String imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
     private String alias;
+
+    @Column(columnDefinition = "TEXT")
     private String powers;
 
+    @Column(columnDefinition = "TEXT")
+    private String imageUrls;
+
     public XmenCharacter() {
+    }
+
+    public XmenCharacter(String name, String description, String alias, String powers, String imageUrls) {
+        this.name = name;
+        this.description = description;
+        this.alias = alias;
+        this.powers = powers;
+        this.imageUrls = imageUrls;
     }
 
     public long getCharacterId() {
@@ -77,5 +78,13 @@ public class XmenCharacter {
 
     public void setPowers(String powers) {
         this.powers = powers;
+    }
+
+    public String getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }
