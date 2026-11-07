@@ -1,8 +1,8 @@
-# 【entity-X-Men¦canonical_name=X-Men】 Character API
+# Character API
 
 A Spring Boot app for browsing, searching, adding, editing, and deleting 【entity-X-Men¦canonical_name=X-Men】 characters.
 
-There are two front ends sharing one back end:
+Two front ends share one back end:
 - **FreeMarker pages** for humans — gallery, details, add / edit forms, about, and a friendly error page
 - **REST API** that returns the same data as JSON
 
