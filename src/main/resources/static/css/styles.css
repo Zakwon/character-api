@@ -1,0 +1,299 @@
+/* ---------- Base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: #333;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1rem;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+/* ---------- One-time success message ---------- */
+.flash {
+  max-width: 1000px;
+  margin: 0 auto 15px auto;
+  padding: 10px 15px;
+  background: #d4edda;
+  border-radius: 6px;
+}
+
+/* ---------- Search bar ---------- */
+.search-bar {
+  max-width: 1000px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-bar button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-bar a {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+}
+
+.search-bar button:hover {
+  background: #0056b3;
+}
+
+/* ---------- Gallery cards ---------- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  display: inline-block;
+  padding: 8px 15px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.card-content a:hover {
+  background: #0056b3;
+}
+
+/* ---------- Details page ---------- */
+.details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-container p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.image-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.image-row img {
+  width: 24%;
+  border-radius: 8px;
+}
+
+/* ---------- Buttons (Edit, Delete, Main Page) ---------- */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.btn-danger {
+  background: #c62828;
+}
+
+.btn-danger:hover {
+  background: #8e0000;
+}
+
+/* ---------- Add / Edit form ---------- */
+.character-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.character-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.character-form input,
+.character-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: normal;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.character-form textarea {
+  min-height: 120px;
+}
+
+.character-form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.error {
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+  color: #b00020;
+  text-align: center;
+}
+
+/* ---------- Error (not found) page ---------- */
+.error-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-box p {
+  margin-bottom: 15px;
+}
+
+/* ---------- About page ---------- */
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h2 {
+  margin-bottom: 10px;
+}
+
+.about-container p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.logo-banner {
+  display: block;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  border-radius: 8px;
+}
