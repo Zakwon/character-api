@@ -19,7 +19,7 @@ Two front ends share one back end:
 | Details | `/characters/{id}` | Shows name, alias, powers, description, and all images. Has Edit and Delete. |
 | Add a Character | `/characters/new` | Form to add a new character. Name and description are required. |
 | Edit Character | `/characters/{id}/edit` | Same form as Add, but pre-filled with the existing character. |
-| About | `/about` | Why I chose X-Men, plus how the app is built. |
+| About | `/about` | Why I chose X-Men |
 | Not Found | `/characters/99999` | Friendly error page instead of a stack trace when an ID does not exist. |
 
 After a successful add, edit, or delete, the app uses Post / Redirect / Get and shows a one-time flash message, for example:
@@ -44,4 +44,4 @@ Base URL: `https://xmen-character-api.onrender.com/api/characters`
 
 Example — get all characters:
 ```bash
-curl https://xmen-character-api.onrender.com/api/characters
+ https://xmen-character-api.onrender.com/api/characters
